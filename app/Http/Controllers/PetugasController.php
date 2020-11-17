@@ -49,9 +49,26 @@ class PetugasController extends Controller
             'username' => ['required', 'alpha_num', 'string', 'min:3', 'max:50'],
             'email' => ['required', 'email'],
             'level' => ['required'],
-            'password' => ['required', 'string', 'min:5', 'confirmed'],
+            'password' => ['required', 'string', 'min:5', 'same:confirm_password'],
         ]);
-        dd($request->all());
+
+        $user = \App\User::create([
+            'level_id' => $request->level,
+            'name' => $request->nama,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
+
+        if($user) {
+            $petugas = Petugas::create([
+                'user_id' => $user->id,
+                'nama_petugas' => $user->name
+            ]);
+        }
+
+        session()->flash('success', 'Data berhasil Ditambahkan!');
+        return redirect()->route('petugas.show', $petugas->id);
     }
 
     /**
@@ -62,7 +79,8 @@ class PetugasController extends Controller
      */
     public function show($id)
     {
-        //
+        $petugas = Petugas::findOrFail($id);
+        return view('admin.user-management.petugas.detail', compact('petugas'));
     }
 
     /**

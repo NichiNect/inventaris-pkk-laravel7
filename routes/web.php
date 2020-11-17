@@ -31,5 +31,6 @@ Route::middleware('auth')->group(function() {
         Route::get('/semua-petugas', 'PetugasController@index')->name('petugas.index');
         Route::get('/tambah-petugas', 'PetugasController@create')->name('petugas.create');
         Route::post('/tambah-petugas', 'PetugasController@store')->name('petugas.store');
+        Route::get('/detail-petugas/{id}', 'PetugasController@show')->name('petugas.show');
     });
 });

@@ -33,7 +33,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <table class="table table-hover">
+                <table class="table table-hover table-fluid">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
@@ -56,7 +56,7 @@
                             <td>{{ $p->user->level->nama_level }}</td>
                             <td>{{ $p->created_at->diffForHumans() . ', ' . $p->created_at }}</td>
                             <td>
-                                <a href="" id="showDetailUser" class="btn btn-success"><i class="fas fa-user"></i> Detail</a>
+                                <a href="{{ route('petugas.show', $p->id) }}" id="showDetailUser" class="btn btn-success"><i class="fas fa-user"></i> Detail</a>
                                 <a href="" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
                                 <form action="" method="post" class="d-inline">
                                     @csrf

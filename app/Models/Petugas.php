@@ -8,6 +8,9 @@ class Petugas extends Model
 {
     protected $table = "petugas";
 
+    protected $fillable = [
+        'user_id', 'nama_petugas'
+    ];
     
     /**
      * Relation with `users` table in `User` model.
