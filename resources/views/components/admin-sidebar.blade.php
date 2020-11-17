@@ -13,7 +13,7 @@
   
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-      <a class="nav-link" href="">
+      <a class="nav-link" href="{{ route('dashboard') }}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span>
       </a>
@@ -36,9 +36,8 @@
       <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">User Berdasarkan Role</h6>
-          <a class="collapse-item" href="">Semua User</a>
-          <a class="collapse-item" href="?role=admin">Role Admin</a>
-          <a class="collapse-item" href="?role=user">Role Pengguna</a>
+          <a class="collapse-item" href="{{ route('petugas.index') }}">Petugas</a>
+          <a class="collapse-item" href="">Pegawai</a>
         </div>
       </div>
     </li>

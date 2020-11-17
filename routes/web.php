@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard');
 });
 
 Auth::routes([
@@ -23,6 +23,13 @@ Auth::routes([
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/dashboard', function() {
-    return view('layouts.master_admin');
+
+Route::middleware('auth')->group(function() {
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+    Route::prefix('pengguna')->group(function() {
+        Route::get('/semua-petugas', 'PetugasController@index')->name('petugas.index');
+        Route::get('/tambah-petugas', 'PetugasController@create')->name('petugas.create');
+        Route::post('/tambah-petugas', 'PetugasController@store')->name('petugas.store');
+    });
 });
