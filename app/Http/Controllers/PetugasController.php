@@ -91,7 +91,8 @@ class PetugasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $petugas = Petugas::findOrFail($id);
+        return view('admin.user-management.petugas.form-edit', compact('petugas'));
     }
 
     /**
@@ -103,7 +104,32 @@ class PetugasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'alpha_num', 'string', 'min:3', 'max:50'],
+            'email' => ['required', 'email'],
+            'level' => ['required'],
+            'password' => ['required', 'string', 'min:5'],
+        ]);
+
+        $petugasLama = Petugas::findOrFail($id);
+
+        $user = \App\User::where('id', $petugasLama->user_id)->update([
+            'level_id' => $request->level,
+            'name' => $request->nama,
+            'username' => $request->username,
+            'email' => $request->email,
+        ]);
+
+        if($request->nama != $petugasLama->nama_petugas) {
+            $petugas = Petugas::where('id', $id)->update([
+                'nama_petugas' => $request->nama
+            ]);
+        }
+        $petugas = Petugas::findOrFail($id);
+
+        session()->flash('success', 'Data berhasil di Edit!');
+        return redirect()->route('petugas.show', $petugas->id);
     }
 
     /**
@@ -114,6 +140,14 @@ class PetugasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $petugas = Petugas::findOrFail($id);
+
+        if($petugas) {
+            $user = \App\User::where('id', $petugas->user_id)->delete();
+            $petugas->delete();
+        }
+
+        session()->flash('success', 'Data berhasil di Hapus!');
+        return redirect()->route('petugas.index');
     }
 }

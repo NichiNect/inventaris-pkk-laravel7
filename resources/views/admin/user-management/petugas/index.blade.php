@@ -12,7 +12,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <h1>Data Semua Petugas</h1>
         @if (session('success'))
 		<div class="alert alert-success my-3">
@@ -57,8 +57,8 @@
                             <td>{{ $p->created_at->diffForHumans() . ', ' . $p->created_at }}</td>
                             <td>
                                 <a href="{{ route('petugas.show', $p->id) }}" id="showDetailUser" class="btn btn-success"><i class="fas fa-user"></i> Detail</a>
-                                <a href="" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
-                                <form action="" method="post" class="d-inline">
+                                <a href="{{ route('petugas.edit', $p->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                                <form action="{{ route('petugas.destroy', $p->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger text-white" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');">

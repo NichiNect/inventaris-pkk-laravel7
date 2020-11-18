@@ -32,5 +32,8 @@ Route::middleware('auth')->group(function() {
         Route::get('/tambah-petugas', 'PetugasController@create')->name('petugas.create');
         Route::post('/tambah-petugas', 'PetugasController@store')->name('petugas.store');
         Route::get('/detail-petugas/{id}', 'PetugasController@show')->name('petugas.show');
+        Route::get('/edit-data-petugas/{id}', 'PetugasController@edit')->name('petugas.edit');
+        Route::patch('/edit-data-petugas/{id}', 'PetugasController@update')->name('petugas.update');
+        Route::delete('/delete-data-petugas/{id}', 'PetugasController@destroy')->name('petugas.destroy');
     });
 });
