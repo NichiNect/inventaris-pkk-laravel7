@@ -18,7 +18,7 @@
 
 <div class="row">
 	<div class="col-lg">
-        <h1>Form Edit Data User</h1>
+        <h1>Form Edit Data Petugas</h1>
 	</div>
 </div>
 
@@ -70,7 +70,7 @@
 						@enderror
                     </div>
                     <div class="form-group text-right">
-						<button type="submit" name="submit" class="btn btn-outline-success">Edit data user!</button>
+						<button type="submit" name="submit" class="btn btn-outline-success">Edit data petugas!</button>
 					</div>
                 </form>
             </div>

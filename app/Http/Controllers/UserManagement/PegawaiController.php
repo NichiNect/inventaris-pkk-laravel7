@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\UserManagement;
 
-use App\Models\Petugas;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class PetugasController extends Controller
+class PegawaiController extends Controller
 {
     protected $messages = [
         "required" => ":attribute tidak boleh kosong",
@@ -22,8 +23,8 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        $petugas = Petugas::paginate(10);
-        return view('admin.user-management.petugas.index', compact('petugas'));
+        $pegawai = Pegawai::paginate(10);
+        return view('admin.user-management.pegawai.index', compact('pegawai'));
     }
 
     /**
@@ -33,7 +34,7 @@ class PetugasController extends Controller
      */
     public function create()
     {
-        return view('admin.user-management.petugas.form-create');
+        return view('admin.user-management.pegawai.form-create');
     }
 
     /**
@@ -48,6 +49,8 @@ class PetugasController extends Controller
             'nama' => ['required', 'string', 'max:255'],
             'username' => ['required', 'alpha_num', 'string', 'min:3', 'max:50'],
             'email' => ['required', 'email'],
+            'nip' => ['required'],
+            'alamat' => ['required'],
             'level' => ['required'],
             'password' => ['required', 'string', 'min:5', 'same:confirm_password'],
         ]);
@@ -59,16 +62,18 @@ class PetugasController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
-
+        
         if($user) {
-            $petugas = Petugas::create([
+            $pegawai = Pegawai::create([
                 'user_id' => $user->id,
-                'nama_petugas' => $user->name
+                'nama_pegawai' => $user->name,
+                'nip' => $request->nip,
+                'alamat' => $request->alamat,
             ]);
         }
 
         session()->flash('success', 'Data berhasil Ditambahkan!');
-        return redirect()->route('petugas.show', $petugas->id);
+        return redirect()->route('pegawai.show', $pegawai->id);
     }
 
     /**
@@ -79,8 +84,8 @@ class PetugasController extends Controller
      */
     public function show($id)
     {
-        $petugas = Petugas::findOrFail($id);
-        return view('admin.user-management.petugas.detail', compact('petugas'));
+        $pegawai = Pegawai::findOrFail($id);
+        return view('admin.user-management.pegawai.detail', compact('pegawai'));
     }
 
     /**
@@ -91,8 +96,8 @@ class PetugasController extends Controller
      */
     public function edit($id)
     {
-        $petugas = Petugas::findOrFail($id);
-        return view('admin.user-management.petugas.form-edit', compact('petugas'));
+        $pegawai = Pegawai::findOrFail($id);
+        return view('admin.user-management.pegawai.form-edit', compact('pegawai'));
     }
 
     /**
@@ -108,28 +113,31 @@ class PetugasController extends Controller
             'nama' => ['required', 'string', 'max:255'],
             'username' => ['required', 'alpha_num', 'string', 'min:3', 'max:50'],
             'email' => ['required', 'email'],
+            'nip' => ['required'],
+            'alamat' => ['required'],
             'level' => ['required'],
             'password' => ['required', 'string', 'min:5'],
         ]);
 
-        $petugasLama = Petugas::findOrFail($id);
+        $pegawaiLama = Pegawai::findOrFail($id);
 
-        $user = \App\User::where('id', $petugasLama->user_id)->update([
-            'level_id' => $request->level,
+        $user = \App\User::where('id', $pegawaiLama->user_id)->update([
             'name' => $request->nama,
             'username' => $request->username,
             'email' => $request->email,
         ]);
 
-        if($request->nama != $petugasLama->nama_petugas) {
-            $petugas = Petugas::where('id', $id)->update([
-                'nama_petugas' => $request->nama
+        if($request->nama!=$pegawaiLama->nama_pegawai || $request->nip!=$pegawaiLama->nip || $request->alamat!=$pegawaiLama->alamat) {
+            $pegawai = Pegawai::where('id', $id)->update([
+                'nama_pegawai' => $request->nama,
+                'nip' => $request->nip,
+                'alamat' => $request->alamat,
             ]);
         }
-        $petugas = Petugas::findOrFail($id);
+        $pegawai = Pegawai::findOrFail($id);
 
         session()->flash('success', 'Data berhasil di Edit!');
-        return redirect()->route('petugas.show', $petugas->id);
+        return redirect()->route('pegawai.show', $pegawai->id);
     }
 
     /**
@@ -140,14 +148,14 @@ class PetugasController extends Controller
      */
     public function destroy($id)
     {
-        $petugas = Petugas::findOrFail($id);
+        $pegawai = Pegawai::findOrFail($id);
 
-        if($petugas) {
-            $user = \App\User::where('id', $petugas->user_id)->delete();
-            $petugas->delete();
+        if($pegawai) {
+            $user = \App\User::where('id', $pegawai->user_id)->delete();
+            $pegawai->delete();
         }
 
         session()->flash('success', 'Data berhasil di Hapus!');
-        return redirect()->route('petugas.index');
+        return redirect()->route('pegawai.index');
     }
 }
