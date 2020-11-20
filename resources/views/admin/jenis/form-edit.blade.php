@@ -1,9 +1,5 @@
 @extends('layouts.master_admin')
 
-@section('style')
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/select2/dist/css/select2.min.css') }}">    
-@endsection
-
 @section('content')
 <div class="row my-3">
     <div class="col-md-6">
@@ -59,10 +55,4 @@
     </div>
 </div>
 
-@endsection
-
-@section('scriptjs')
-<script>
-
-</script>
 @endsection

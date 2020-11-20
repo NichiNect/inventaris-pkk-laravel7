@@ -56,7 +56,7 @@
         <i class="fas fa-fw fa-drafting-compass"></i>
         <span>Jenis</span>
       </a>
-      <a class="nav-link pb-3" href="">
+      <a class="nav-link pb-3" href="{{ route('ruang.index') }}">
         <i class="fas fa-fw fa-building"></i>
         <span>Ruang</span>
       </a>

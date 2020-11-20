@@ -55,5 +55,13 @@ Route::middleware('auth')->group(function() {
         Route::get('/edit-jenis-inventaris/{id}', 'JenisController@edit')->name('jenis.edit');
         Route::patch('/edit-jenis-inventaris/{id}', 'JenisController@update')->name('jenis.update');
         Route::delete('/hapus-jenis-inventaris/{id}', 'JenisController@destroy')->name('jenis.destroy');
+        // ruang
+        Route::get('/semua-ruang', 'RuangController@index')->name('ruang.index');
+        Route::get('/tambah-data-ruangan', 'RuangController@create')->name('ruang.create');
+        Route::post('/tambah-data-ruangan', 'RuangController@store')->name('ruang.store');
+        Route::get('/detail-data-ruangan/{id}', 'RuangController@show')->name('ruang.show');
+        Route::get('/edit-data-ruangan/{id}', 'RuangController@edit')->name('ruang.edit');
+        Route::patch('/edit-data-ruangan/{id}', 'RuangController@update')->name('ruang.update');
+        Route::delete('/hapus-data-ruangan/{id}', 'RuangController@destroy')->name('ruang.destroy');
     });
 });
