@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin Dashboard - JerseCommerce</title>
+  <title>Inventaris SMK</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{ asset('assets/vendor/fontawesome-5.14.0/css/all.min.css') }}" rel="stylesheet" type="text/css">

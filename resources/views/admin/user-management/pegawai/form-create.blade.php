@@ -6,7 +6,7 @@
 		<nav aria-label="breadcrumb">
             <ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="{{ route('pegawai.index') }}"><i class="fas fa-users-cog"></i> User Management</a></li>
-				<li class="breadcrumb-item active" aria-current="page"><i class="fas fa-user-plus"></i> Tambah User baru</a></li>
+				<li class="breadcrumb-item active" aria-current="page"><i class="fas fa-user-plus"></i> Tambah User Baru</a></li>
 			</ol>
 		</nav>
 	</div>

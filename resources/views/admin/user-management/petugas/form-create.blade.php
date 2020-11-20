@@ -10,7 +10,7 @@
 		<nav aria-label="breadcrumb">
             <ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="{{ route('petugas.index') }}"><i class="fas fa-users-cog"></i> User Management</a></li>
-				<li class="breadcrumb-item active" aria-current="page"><i class="fas fa-user-plus"></i> Tambah User baru</a></li>
+				<li class="breadcrumb-item active" aria-current="page"><i class="fas fa-user-plus"></i> Tambah User Baru</a></li>
 			</ol>
 		</nav>
 	</div>
@@ -18,7 +18,7 @@
 
 <div class="row">
 	<div class="col-lg">
-        <h1>Form Tambah User Baru</h1>
+        <h1>Form Tambah Petugas Baru</h1>
 	</div>
 </div>
 
@@ -26,7 +26,7 @@
     <div class="col-lg">
         <div class="card">
             <div class="card-body">
-                <form action="" method="post">
+                <form action="{{ route('petugas.store') }}" method="post">
                     @csrf
                     <div class="form-group">
 						<label for="nama">Nama</label>

@@ -61,6 +61,10 @@
                             <td>{{ $petugas->nama_petugas }}</td>
                         </tr>
                         <tr>
+                            <td class="key">Email</td>
+                            <td>{{ $petugas->user->email }}</td>    
+                        </tr>
+                        <tr>
                             <td class="key">Role/User Level</td>
                             <td>{{ $petugas->user->level->nama_level }}</td>
                         </tr>

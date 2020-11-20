@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes([
     'reset' => false,
-    'remembered' => false
+    'remember_me' => false
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -44,5 +44,16 @@ Route::middleware('auth')->group(function() {
         Route::get('/edit-data-pegawai/{id}', 'PegawaiController@edit')->name('pegawai.edit');
         Route::patch('/edit-data-pegawai/{id}', 'PegawaiController@update')->name('pegawai.update');
         Route::delete('/delete-data-pegawai/{id}', 'PegawaiController@destroy')->name('pegawai.destroy');
+    });
+
+    Route::prefix('logistik')->namespace('Inventaris')->group(function() {
+        // jenis
+        Route::get('/jenis-inventaris', 'JenisController@index')->name('jenis.index');
+        Route::get('/tambah-jenis-inventaris', 'JenisController@create')->name('jenis.create');
+        Route::post('/tambah-jenis-inventaris', 'JenisController@store')->name('jenis.store');
+        Route::get('/detail-jenis-inventaris/{id}', 'JenisController@show')->name('jenis.show');
+        Route::get('/edit-jenis-inventaris/{id}', 'JenisController@edit')->name('jenis.edit');
+        Route::patch('/edit-jenis-inventaris/{id}', 'JenisController@update')->name('jenis.update');
+        Route::delete('/hapus-jenis-inventaris/{id}', 'JenisController@destroy')->name('jenis.destroy');
     });
 });

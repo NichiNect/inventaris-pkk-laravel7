@@ -47,32 +47,23 @@
   
     <!-- Heading -->
     <div class="sidebar-heading">
-      Products
+      Pengelolaan Data Logistik
     </div>
   
     <!-- Nav Item - Products -->
     <li class="nav-item">
-      <a class="nav-link" href="">
-        <i class="fas fa-fw fa-tshirt"></i>
-        <span>Products JerseCommerce</span>
+      <a class="nav-link pb-0" href="{{ route('jenis.index') }}">
+        <i class="fas fa-fw fa-drafting-compass"></i>
+        <span>Jenis</span>
+      </a>
+      <a class="nav-link pb-3" href="">
+        <i class="fas fa-fw fa-building"></i>
+        <span>Ruang</span>
       </a>
     </li>
   
     <!-- Divider -->
     <hr class="sidebar-divider">
-  
-    <!-- Heading -->
-    <div class="sidebar-heading">
-      Pesanan
-    </div>
-  
-    <!-- Nav Item - Products -->
-    <li class="nav-item">
-      <a class="nav-link" href="">
-        <i class="fas fa-fw fa-cart-plus"></i>
-        <span>Permintaan Pesanan</span>
-      </a>
-    </li>
   
     <!-- Heading -->
     <div class="sidebar-heading">
