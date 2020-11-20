@@ -9,7 +9,7 @@
     <div class="col-md-6">
 		<nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="{{ route('petugas.index') }}"><i class="fas fa-users-cog"></i> User Management</a></li>
+				<li class="breadcrumb-item"><a href="{{ route('jenis.index') }}"><i class="fas fa-drafting-compass"></i> Jenis Inventaris</a></li>
 				<li class="breadcrumb-item active" aria-current="page"><i class="fas fa-file-medical"></i> Tambah Data Jenis</a></li>
 			</ol>
 		</nav>

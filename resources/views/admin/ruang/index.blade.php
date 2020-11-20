@@ -38,7 +38,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row my-3">
     <div class="col-lg">
         <div class="card">
             <div class="card-body">
