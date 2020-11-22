@@ -11,4 +11,12 @@ class Ruang extends Model
     protected $fillable = [
         'nama_ruang', 'kode_ruang', 'keterangan'
     ];
+
+    /**
+     * Relation with `inventaris` table in `Inventaris` model.
+     */
+    public function inventaris()
+    {
+        return $this->hasMany(\App\Models\Inventaris::class, 'ruang_id', 'id');
+    }
 }

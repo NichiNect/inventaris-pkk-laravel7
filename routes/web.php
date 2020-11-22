@@ -19,10 +19,11 @@ Route::get('/', function () {
 
 Auth::routes([
     'reset' => false,
+    // 'register' => false,
     'remember_me' => false
 ]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->group(function() {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
@@ -63,5 +64,13 @@ Route::middleware('auth')->group(function() {
         Route::get('/edit-data-ruangan/{id}', 'RuangController@edit')->name('ruang.edit');
         Route::patch('/edit-data-ruangan/{id}', 'RuangController@update')->name('ruang.update');
         Route::delete('/hapus-data-ruangan/{id}', 'RuangController@destroy')->name('ruang.destroy');
+        // inventaris
+        Route::get('/semua-inventaris', 'InventarisController@index')->name('invent.index');
+        Route::get('/tambah-data-inventaris', 'InventarisController@create')->name('invent.create');
+        Route::post('/tambah-data-inventaris', 'InventarisController@store')->name('invent.store');
+        Route::get('/detail-data-inventaris/{id}', 'InventarisController@show')->name('invent.show');
+        Route::get('/edit-data-inventaris/{id}', 'InventarisController@edit')->name('invent.edit');
+        Route::patch('/edit-data-inventaris/{id}', 'InventarisController@update')->name('invent.update');
+        Route::delete('/hapus-data-inventaris/{id}', 'InventarisController@destroy')->name('invent.destroy');
     });
 });

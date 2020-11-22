@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row my-3">
     <div class="col-md-8">
         <a href="{{ route('petugas.edit', $petugas->id) }}" class="btn btn-warning mb-3"><i class="fas fa-edit"></i> Edit</a>
         <form action="{{ route('petugas.destroy', $petugas->id) }}" method="post" class="d-inline">
@@ -46,7 +46,7 @@
         </form>
         <div class="card">
             <div class="card-body">
-                <table class="table table-hover table-fluid">
+                <table class="table table-hover">
                     <tbody>
                         <tr>
                             <td class="key">ID</td>

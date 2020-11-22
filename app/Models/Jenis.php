@@ -11,4 +11,12 @@ class Jenis extends Model
     protected $fillable = [
         'nama_jenis', 'kode_jenis', 'keterangan'
     ];
+
+    /**
+     * Relation with `inventaris` table in `Inventaris` model.
+     */
+    public function inventaris()
+    {
+        return $this->hasMany(\App\Models\inventaris::class, 'jenis_id', 'id');
+    }
 }

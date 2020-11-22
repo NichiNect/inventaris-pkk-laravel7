@@ -54,11 +54,15 @@
     <li class="nav-item">
       <a class="nav-link pb-0" href="{{ route('jenis.index') }}">
         <i class="fas fa-fw fa-drafting-compass"></i>
-        <span>Jenis</span>
+        <span>Jenis Inventaris</span>
       </a>
-      <a class="nav-link pb-3" href="{{ route('ruang.index') }}">
+      <a class="nav-link pb-0" href="{{ route('ruang.index') }}">
         <i class="fas fa-fw fa-building"></i>
         <span>Ruang</span>
+      </a>
+      <a class="nav-link pb-3" href="{{ route('invent.index') }}">
+        <i class="fas fa-fw fa-gem"></i>
+        <span>Inventaris</span>
       </a>
     </li>
   

@@ -21,9 +21,9 @@ class CreateInventarisTable extends Migration
             $table->integer('jumlah');
             $table->timestamp('tanggal_register');
             $table->string('kode_inventaris', 128);
-            $table->bigInteger('id_jenis');
-            $table->bigInteger('id_ruang');
-            $table->bigInteger('id_petugas');
+            $table->bigInteger('jenis_id');
+            $table->bigInteger('ruang_id');
+            $table->bigInteger('petugas_id');
             $table->timestamps();
         });
     }
