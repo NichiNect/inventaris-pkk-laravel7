@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes([
     'reset' => false,
-    // 'register' => false,
+    'register' => false,
     'remember_me' => false
 ]);
 
