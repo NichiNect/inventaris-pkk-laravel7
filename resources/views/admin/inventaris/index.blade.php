@@ -59,9 +59,9 @@
                         @forelse ($inventaris as $invent)
                         <tr>
                             <th scope="row">{{ $i++ }}</th>
-                            <td>{{ $invent->nama }}</td>
+                            <td>{{ ucwords($invent->nama) }}</td>
                             <td>{{ $invent->kondisi }}</td>
-                            <td>{{ $invent->keterangan }}</td>
+                            <td>{{ ucwords($invent->keterangan) }}</td>
                             <td>{{ $invent->jumlah }}</td>
                             <td>{{ $invent->kode_inventaris }}</td>
                             <td>
@@ -85,6 +85,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                {{ $inventaris->links() }}
             </div>
         </div>
     </div>

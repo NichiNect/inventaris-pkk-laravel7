@@ -83,6 +83,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                {{ $ruang->links() }}
             </div>
         </div>
     </div>

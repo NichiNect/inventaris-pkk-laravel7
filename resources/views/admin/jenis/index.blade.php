@@ -83,6 +83,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                {{ $jenis->links() }}
             </div>
         </div>
     </div>
