@@ -73,4 +73,9 @@ Route::middleware('auth')->group(function() {
         Route::patch('/edit-data-inventaris/{id}', 'InventarisController@update')->name('invent.update');
         Route::delete('/hapus-data-inventaris/{id}', 'InventarisController@destroy')->name('invent.destroy');
     });
+
+    Route::prefix('peminjaman')->namespace('Peminjaman')->group(function() {
+        Route::get('', 'PeminjamanController@index')->name('peminjaman.index');
+        Route::get('/request-peminjaman', 'PeminjamanController@createRequestPinjam')->name('peminjaman.req.pinjam');
+    });
 });

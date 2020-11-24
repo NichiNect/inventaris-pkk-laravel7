@@ -33,7 +33,7 @@
         <i class="fas fa-fw fa-users"></i>
         <span>User Management</span>
       </a>
-      <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+      <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">User Berdasarkan Role</h6>
           <a class="collapse-item" href="{{ route('petugas.index') }}">Petugas</a>
@@ -50,7 +50,7 @@
       Pengelolaan Data Logistik
     </div>
   
-    <!-- Nav Item - Products -->
+    <!-- Nav Item - Logistik -->
     <li class="nav-item">
       <a class="nav-link pb-0" href="{{ route('jenis.index') }}">
         <i class="fas fa-fw fa-drafting-compass"></i>
@@ -65,10 +65,26 @@
         <span>Inventaris</span>
       </a>
     </li>
-  
+
     <!-- Divider -->
     <hr class="sidebar-divider">
   
+    <!-- Heading -->
+    <div class="sidebar-heading">
+      Pengelolaan Data Logistik
+    </div>
+  
+    <!-- Nav Item - Peminjaman -->
+    <li class="nav-item">
+      <a class="nav-link pb-3" href="{{ route('peminjaman.index') }}">
+        <i class="fas fa-fw fa-box-open"></i>
+        <span>Peminjaman</span>
+      </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    
     <!-- Heading -->
     <div class="sidebar-heading">
       Logout
