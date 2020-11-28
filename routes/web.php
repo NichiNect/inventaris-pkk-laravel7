@@ -80,6 +80,9 @@ Route::middleware('auth')->group(function() {
         Route::get('/create-request-pinjam', 'PeminjamanController@createRequestPinjam')->name('peminjaman.create.req');
         Route::post('/create-request-pinjam', 'PeminjamanController@storeRequestPinjam')->name('peminjaman.store.req');
         Route::delete('/delete-request-pinjam/{id}', 'PeminjamanController@deleteRequestPinjam')->name('peminjaman.delete');
+
+        Route::patch('/acc-request-pinjam/{id}', 'PeminjamanController@accRequestPinjam')->name('peminjaman.patch.acc');
+        Route::get('/acc-peminjaman', 'PeminjamanController@accIndex')->name('peminjaman.acc.index');
         // detail
         Route::get('/detail-peminjaman/{id}', 'DetailPinjamController@detailIndex')->name('detail.index');
         Route::get('/create-request-detail/{id}', 'DetailPinjamController@detailCreate')->name('detail.create');

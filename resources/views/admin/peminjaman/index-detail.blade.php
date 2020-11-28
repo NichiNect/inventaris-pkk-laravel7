@@ -50,7 +50,15 @@
                         <tr>
                             <td>Status Peminjaman</td>
                             <td>:</td>
-                            <td>@if($peminjaman->status_peminjaman == 1) Dikembalikan @else Belum Dikembalikan @endif </td>
+                            <td>
+                                @if ($peminjaman->status_peminjaman == 0)
+                                    {{ "Belum di ACC" }}
+                                @elseif($peminjaman->status_peminjaman == 1)
+                                    {{ "Peminjaman telah di ACC" }}
+                                @elseif($peminjaman->status_peminjaman == 2)
+                                    {{ "Telah Dikembalikan" }}
+                                @endif
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -76,6 +84,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Tanggal Pinjam</th>
                         <th scope="col">Nama Barang</th>
+                        <th scope="col">Ruang</th>
                         <th scope="col">Jumlah</th>
                         <th scope="col">Aksi</th>
                     </thead>
@@ -88,6 +97,7 @@
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $d->created_at }}</td>
                                 <td>{{ $d->inventaris->nama }}</td>
+                                <td>{{ $d->inventaris->ruang->nama_ruang }}</td>
                                 <td>{{ $d->jumlah }}</td>
                                 <td>
                                     <form action="{{ route('detail.delete', $d->id) }}" method="POST">
