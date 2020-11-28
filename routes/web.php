@@ -83,6 +83,11 @@ Route::middleware('auth')->group(function() {
 
         Route::patch('/acc-request-pinjam/{id}', 'PeminjamanController@accRequestPinjam')->name('peminjaman.patch.acc');
         Route::get('/acc-peminjaman', 'PeminjamanController@accIndex')->name('peminjaman.acc.index');
+        
+        Route::patch('/send-request-kembali/{id}', 'PeminjamanController@requestKembali')->name('peminjaman.req.kembali');
+        Route::patch('/cancel-request-kembali/{id}', 'PeminjamanController@cancelRequestKembali')->name('peminjaman.cancel.kembali');
+        Route::patch('/acc-request-kembali/{id}', 'PeminjamanController@accRequestKembali')->name('peminjaman.acc.kembali');
+        Route::get('/request-kembali', 'PeminjamanController@reqKembaliIndex')->name('peminjaman.kembali.index');
         // detail
         Route::get('/detail-peminjaman/{id}', 'DetailPinjamController@detailIndex')->name('detail.index');
         Route::get('/create-request-detail/{id}', 'DetailPinjamController@detailCreate')->name('detail.create');

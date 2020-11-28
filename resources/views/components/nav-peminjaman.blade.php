@@ -4,7 +4,7 @@
 <a href="{{ route('peminjaman.acc.index') }}" class="btn btn-outline-success my-3">
     <i class="fas fa-check"></i> Peminjaman Disetujui
 </a>
-<a href="" class="btn btn-outline-warning my-3">
+<a href="{{ route('peminjaman.kembali.index') }}" class="btn btn-outline-warning my-3">
     <i class="far fa-comment-dots"></i> Request Kembali
 </a>
 <a href="" class="btn btn-outline-info my-3">

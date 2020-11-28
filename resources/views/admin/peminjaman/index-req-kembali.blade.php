@@ -14,7 +14,8 @@
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('peminjaman.index') }}"><i class="fas fa-box-open"></i> Peminjaman</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-copy"></i> Data Peminjaman</li>
+                <li class="breadcrumb-item"><a href="{{ route('peminjaman.index') }}"><i class="fas fa-copy"></i> Data Peminjaman</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-exchange-alt"></i> Request Kembali</li>
 			</ol>
 		</nav>
 	</div>
@@ -22,11 +23,11 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h1>Data Peminjaman</h1>
+        <h1>Data Peminjaman yang Melakukan Request Kembali</h1>
         <x-flash-message></x-flash-message>
         
         <x-nav-peminjaman></x-nav-peminjaman>
-        
+
     </div>
 </div>
 
@@ -66,22 +67,24 @@
                             <td>@if($p->tanggal_kembali == null) Belum Dikembalikan @else {{ $row->tanggal_kembali }} @endif </td>
                             <td>
                                 @if (\Auth::user()->level->nama_level != "Pegawai")
-                                <form action="{{ route('peminjaman.patch.acc', $p->id) }}" method="POST" class="d-block mb-1">
+                                <form action="{{ route('peminjaman.acc.kembali', $p->id) }}" method="POST" class="d-block mb-1">
                                     @method('patch')
                                     @csrf
                                     <button class="btn btn-outline-success" onclick="return confirm('Apakah anda yakin menyetujui request ini?');">
-                                        <i class="fas fa-check"></i> ACC Permintaan
+                                        <i class="fas fa-check"></i> ACC Pengembalian
                                     </button>
                                 </form>
                                 @endif
                                 <a href="{{ route('detail.index', $p->id) }}" id="showDetail" class="btn btn-info"><i class="fas fa-search"></i> Detail</a>
-                                <form action="{{ route('peminjaman.delete', $p->id) }}" method="post" class="d-inline">
+                                @if (\Auth::user()->level->nama_level == "Pegawai")
+                                <form action="{{ route('peminjaman.cancel.kembali', $p->id) }}" method="POST" class="d-block mt-1">
+                                    @method('patch')
                                     @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger text-white" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');">
-                                        <i class="fas fa-trash"></i> Hapus
+                                    <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin menyetujui request ini?');">
+                                        <i class="fas fa-times"></i> Batalkan
                                     </button>
                                 </form>
+                                @endif
                             </td>
                         </tr>
                         @empty

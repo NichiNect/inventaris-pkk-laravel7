@@ -33,7 +33,7 @@
 
 <div class="row my-3">
     <div class="col-lg-12">
-        <div class="card">
+        <div class="card shadow-sm">
             <div class="card-body">
                 <table class="table table-hover table-responsive">
                     <thead>
@@ -67,7 +67,7 @@
                             <td>@if($p->tanggal_kembali == null) Belum Dikembalikan @else {{ $row->tanggal_kembali }} @endif </td>
                             <td>
                                 @if (\Auth::user()->level->nama_level == "Pegawai")
-                                <form action="" method="POST" class="d-block mb-1">
+                                <form action="{{ route('peminjaman.req.kembali', $p->id) }}" method="POST" class="d-block mb-1">
                                     @method('patch')
                                     @csrf
                                     <button class="btn btn-outline-success" onclick="return confirm('Apakah anda yakin menyetujui request ini?');">
@@ -76,13 +76,6 @@
                                 </form>
                                 @endif
                                 <a href="{{ route('detail.index', $p->id) }}" id="showDetail" class="btn btn-info"><i class="fas fa-search"></i> Detail</a>
-                                <form action="{{ route('peminjaman.delete', $p->id) }}" method="post" class="d-inline">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger text-white" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');">
-                                        <i class="fas fa-trash"></i> Hapus
-                                    </button>
-                                </form>
                             </td>
                         </tr>
                         @empty

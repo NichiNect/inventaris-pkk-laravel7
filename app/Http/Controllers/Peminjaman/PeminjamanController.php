@@ -36,6 +36,19 @@ class PeminjamanController extends Controller
     }
 
     /**
+     * Method request kembali
+     */
+    public function reqKembaliIndex()
+    {
+        if(\Auth::user()->level->nama_level == "Pegawai") {
+            $peminjaman = Peminjaman::where(['pegawai_id' => \Auth::user()->pegawai->id, 'status_peminjaman' => 2])->orderBy('updated_at', 'DESC')->paginate(10);
+        } else {
+            $peminjaman = Peminjaman::where(['status_peminjaman' => 2])->orderBy('updated_at', 'DESC')->paginate(10);
+        }
+        return view('admin.peminjaman.index-req-kembali', compact('peminjaman'));
+    }
+
+    /**
      * Method untuk menampilkan form pembuatan request pinjam
      * @return view
      */
@@ -89,23 +102,21 @@ class PeminjamanController extends Controller
     /**
      * Method patch untuk acc request peminjaman
      * @param Request $id
-     * @return view->back()
+     * @return view->back
      */
     public function accRequestPinjam($id)
     {
         $peminjaman = Peminjaman::findOrFail($id);
-        // dd($peminjaman->detail_pinjam);
-        $s = 0;
+        
         foreach($peminjaman->detail_pinjam as $p) {
             if($p->inventaris->jumlah >= $p->jumlah) {
                 // update jumlah barang
                 $inventaris = Inventaris::findOrFail($p->inventaris_id);
-
                 $invUpdate = Inventaris::where(['id' => $p->inventaris_id])
                 ->update([
                     'jumlah' => $inventaris->jumlah - $p->jumlah,
                 ]);
-
+                // update status
                 $peminjaman = Peminjaman::where(['id' => $id])
                 ->update([
                     'status_peminjaman' => 1,
@@ -115,9 +126,68 @@ class PeminjamanController extends Controller
                 return abort(403, "Terjadi Kesalahan Pada Detail Peminjaman");
             }
         }
-        
+
         session()->flash('success', "Permintaan telah di ACC!");
         return redirect()->back();
     }
+
+    /**
+     * Method untuk mengajukan request pinjam
+     * @param Request $id
+     * @return view->back
+     */
+    public function requestKembali($id)
+    {
+        $peminjaman = Peminjaman::findOrFail($id);
+
+        $peminjaman->update([
+            'status_peminjaman' => 2
+        ]);
+
+        session()->flash('success', "Request pengembalian telah dikirim!");
+        return redirect()->back();
+    }
+    /**
+     * Method untuk membatalkan request pinjam
+     * @param Request $id
+     * @return view->back
+     */
+    public function cancelRequestKembali($id)
+    {
+        $peminjaman = Peminjaman::findOrFail($id);
+
+        $peminjaman->update([
+            'status_peminjaman' => 1
+        ]);
+
+        session()->flash('success', "Request kembali telah berhasil dibatalkan!");
+        return redirect()->back();
+    }
+    /**
+     * Method untuk acc request kembali
+     * @param Request $id
+     */
+    public function accRequestKembali($id)
+    {
+        $peminjaman = Peminjaman::findOrFail($id);
+        
+        foreach($peminjaman->detail_pinjam as $p) {
+            // update jumlah
+            $inventaris = Inventaris::findOrFail($p->inventaris_id);
+            $invUpdate = Inventaris::where(['id' => $p->inventaris_id])
+            ->update([
+                'jumlah' => $inventaris->jumlah + $p->jumlah,
+            ]);
+            // update status
+            $peminjaman->update([
+                'status_peminjaman' => 3,
+            ]);
+        }
+
+        session()->flash('success', "Permintaan telah di ACC!");
+        return redirect()->back();
+    }
+
+
     
 }
