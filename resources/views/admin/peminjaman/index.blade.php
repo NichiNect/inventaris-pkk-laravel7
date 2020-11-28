@@ -32,7 +32,7 @@
 		</div>
         @endif
         
-        <a href="{{ route('peminjaman.req.pinjam') }}" class="btn btn-outline-primary my-3">
+        <a href="{{ route('peminjaman.create.req') }}" class="btn btn-outline-primary my-3">
 			<i class="fas fa-plus"></i> Tambah Peminjaman
 		</a>
         <a href="" class="btn btn-outline-success my-3">
@@ -48,20 +48,51 @@
 </div>
 
 <div class="row my-3">
-    <div class="col-lg">
+    <div class="col-lg-10">
         <div class="card">
             <div class="card-body">
                 <table class="table table-hover table-responsive">
                     <thead>
                         <th scope="col">#</th>
                         <th scope="col">Nama Peminjam</th>
-                        <th scope="col">Nama Barang</th>
+                        {{-- <th scope="col">Nama Barang</th> --}}
                         <th scope="col">Jumlah Item</th>
                         <th scope="col">Tanggal Pinjam</th>
                         <th scope="col">Tanggal Kembali</th>
                         <th scope="col">Aksi</th>
                     </thead>
+                    <tbody>
+                        @php
+                            $i = 1;
+                        @endphp
+                        @forelse ($peminjaman as $p)
+                        <tr>
+                            <th scope="row">{{ $i++ }}</th>
+                            <td>{{ $p->pegawai->nama_pegawai }}</td>
+                            <td>{{ count($p->detail_pinjam). " Item" }}</td>
+                            <td>{{ $p->tanggal_pinjam }}</td>
+                            <td>@if($p->tanggal_kembali == null) Belum Dikembalikan @else {{ $row->tanggal_kembali }} @endif </td>
+                            <td>
+                                <a href="{{ route('detail.index', $p->id) }}" id="showDetail" class="btn btn-success"><i class="fas fa-search"></i> Detail</a>
+                                <form action="" method="post" class="d-inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger text-white" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');">
+                                        <i class="fas fa-trash"></i> Hapus
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="8" class="text-center">
+                                <h3>Data Kosong</h3>
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
                 </table>
+                {{ $peminjaman->links() }}
             </div>
         </div>
     </div>

@@ -18,7 +18,7 @@ class CreatePeminjamanTable extends Migration
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali')->nullable();
             $table->integer('status_peminjaman')->nullable();
-            $table->bigInteger('id_pegawai');
+            $table->bigInteger('pegawai_id');
             $table->timestamps();
         });
     }

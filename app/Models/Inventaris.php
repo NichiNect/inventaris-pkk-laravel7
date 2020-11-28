@@ -35,4 +35,12 @@ class Inventaris extends Model
     {
         return $this->belongsTo(\App\Models\Petugas::class, 'petugas_id', 'id');
     }
+
+    /**
+     * Relation with `inventaris` table in `Inventaris` model.
+     */
+    public function detail_pinjam()
+    {
+        return $this->hasMany(\App\Models\DetailPinjam::class);
+    }
 }

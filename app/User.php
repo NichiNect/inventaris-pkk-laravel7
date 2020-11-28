@@ -50,7 +50,7 @@ class User extends Authenticatable
      */
     public function pegawai()
     {
-        return $this->belongsTo(\App\Models\Pegawai::class, 'user_id', 'id');
+        return $this->hasOne(\App\Models\Pegawai::class, 'user_id', 'id');
     }
 
     /**

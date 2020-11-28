@@ -19,4 +19,12 @@ class Pegawai extends Model
     {
         return $this->belongsTo(\App\User::class, 'user_id', 'id');
     }
+
+    /**
+     * Relation with `peminjaman` table in `Peminjaman` model.
+     */
+    public function peminjaman()
+    {
+        return $this->hasMany(Peminjaman::class);
+    }
 }
