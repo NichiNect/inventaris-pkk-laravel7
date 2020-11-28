@@ -10,11 +10,12 @@
 
 @section('content')
 <div class="row my-3">
-	<div class="col-md-6">
+	<div class="col-md-7">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('peminjaman.index') }}"><i class="fas fa-box-open"></i> Peminjaman</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-copy"></i> Detail Peminjaman</li>
+                <li class="breadcrumb-item"><a href="{{ route('peminjaman.history.index') }}"><i class="fas fa-history"></i> History Peminjaman</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-search"></i> Detail History Peminjaman</li>
 			</ol>
 		</nav>
 	</div>
@@ -55,9 +56,9 @@
                                     {{ "Belum di ACC" }}
                                 @elseif($peminjaman->status_peminjaman == 1)
                                     {{ "Peminjaman telah di ACC" }}
-                                @elseif($p->status_peminjaman == 2)
+                                @elseif($peminjaman->status_peminjaman == 2)
                                     {{ "Request Kembali" }}
-                                @elseif($p->status_peminjaman == 3)
+                                @elseif($peminjaman->status_peminjaman == 3)
                                     {{ "Dikembalikan" }}
                                 @endif
                             </td>
@@ -80,7 +81,6 @@
     <div class="col-lg-12">
         <div class="card shadow-sm">
             <div class="card-body">
-                <a href="{{ route('detail.create', $peminjaman->id) }}" class="btn btn-success mb-3">Tambah Detail Pinjam</a>
                 <table class="table table-hover">
                     <thead>
                         <th scope="col">#</th>
@@ -88,7 +88,6 @@
                         <th scope="col">Nama Barang</th>
                         <th scope="col">Ruang</th>
                         <th scope="col">Jumlah</th>
-                        <th scope="col">Aksi</th>
                     </thead>
                     <tbody>
                         @php
@@ -101,13 +100,6 @@
                                 <td>{{ $d->inventaris->nama }}</td>
                                 <td>{{ $d->inventaris->ruang->nama_ruang }}</td>
                                 <td>{{ $d->jumlah }}</td>
-                                <td>
-                                    <form action="{{ route('detail.delete', $d->id) }}" method="POST">
-                                        @method('delete')
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                    </form>
-                                </td>
                             </tr>
                         @empty
                             <tr>

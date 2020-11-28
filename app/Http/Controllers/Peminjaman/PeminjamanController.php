@@ -49,6 +49,35 @@ class PeminjamanController extends Controller
     }
 
     /**
+     * Method menampilkan halaman History index
+     * @return view
+     */
+    public function historyIndex()
+    {
+        if(\Auth::user()->level->nama_level == "Pegawai") {
+            $peminjaman = Peminjaman::where(['pegawai_id' => \Auth::user()->pegawai->id, 'status_peminjaman' => 3])->orderBy('updated_at', 'DESC')->paginate(10);
+        } else {
+            $peminjaman = Peminjaman::where(['status_peminjaman' => 3])->orderBy('updated_at', 'DESC')->paginate(10);
+        }
+        return view('admin.peminjaman.index-history', compact('peminjaman'));
+    }
+    /**
+     * Method untuk menampilkan detail dari history peminjaman (show)
+     * @param Request $id
+     * @return view
+     */
+    public function historyShow($id)
+    {
+        $peminjaman = Peminjaman::findOrFail($id);
+        $detailPinjam = DetailPinjam::where(["peminjaman_id" => $peminjaman->id])->get();
+        
+        return view('admin.peminjaman.show-history', [
+            'peminjaman' => $peminjaman,
+            'detailPinjam' => $detailPinjam
+        ]);
+    }
+
+    /**
      * Method untuk menampilkan form pembuatan request pinjam
      * @return view
      */
@@ -181,6 +210,7 @@ class PeminjamanController extends Controller
             // update status
             $peminjaman->update([
                 'status_peminjaman' => 3,
+                'tanggal_kembali' => date('Y-m-d',time())
             ]);
         }
 

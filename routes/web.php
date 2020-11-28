@@ -88,6 +88,10 @@ Route::middleware('auth')->group(function() {
         Route::patch('/cancel-request-kembali/{id}', 'PeminjamanController@cancelRequestKembali')->name('peminjaman.cancel.kembali');
         Route::patch('/acc-request-kembali/{id}', 'PeminjamanController@accRequestKembali')->name('peminjaman.acc.kembali');
         Route::get('/request-kembali', 'PeminjamanController@reqKembaliIndex')->name('peminjaman.kembali.index');
+
+        Route::get('/history', 'PeminjamanController@historyIndex')->name('peminjaman.history.index');
+        Route::get('/history/detail/{id}', 'PeminjamanController@historyShow')->name('peminjaman.history.show');
+
         // detail
         Route::get('/detail-peminjaman/{id}', 'DetailPinjamController@detailIndex')->name('detail.index');
         Route::get('/create-request-detail/{id}', 'DetailPinjamController@detailCreate')->name('detail.create');

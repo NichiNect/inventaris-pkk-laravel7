@@ -58,12 +58,14 @@
                                 @elseif($p->status_peminjaman == 1)
                                     {{ "Peminjaman telah di ACC" }}
                                 @elseif($p->status_peminjaman == 2)
-                                    {{ "Telah Dikembalikan" }}
+                                    {{ "Request Kembali" }}
+                                @elseif($p->status_peminjaman == 3)
+                                    {{ "Dikembalikan" }}
                                 @endif
                             </td>
                             <td>{{ count($p->detail_pinjam). " Item" }}</td>
                             <td>{{ $p->tanggal_pinjam }}</td>
-                            <td>@if($p->tanggal_kembali == null) Belum Dikembalikan @else {{ $row->tanggal_kembali }} @endif </td>
+                            <td>@if($p->tanggal_kembali == null) Belum Dikembalikan @else {{ $p->tanggal_kembali }} @endif </td>
                             <td>
                                 @if (\Auth::user()->level->nama_level != "Pegawai")
                                 <form action="{{ route('peminjaman.patch.acc', $p->id) }}" method="POST" class="d-block mb-1">

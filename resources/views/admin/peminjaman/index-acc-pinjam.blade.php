@@ -59,7 +59,9 @@
                                 @elseif($p->status_peminjaman == 1)
                                     {{ "Peminjaman telah di ACC" }}
                                 @elseif($p->status_peminjaman == 2)
-                                    {{ "Telah Dikembalikan" }}
+                                    {{ "Request Kembali" }}
+                                @elseif($p->status_peminjaman == 3)
+                                    {{ "Dikembalikan" }}
                                 @endif
                             </td>
                             <td>{{ count($p->detail_pinjam). " Item" }}</td>
