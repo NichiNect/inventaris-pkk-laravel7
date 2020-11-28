@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Peminjaman;
 
-use App\Models\{Inventaris, Ruang, Jenis, Peminjaman, Pegawai};
+use App\Models\{Inventaris, Ruang, Jenis, Peminjaman, Pegawai, DetailPinjam};
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -39,6 +39,21 @@ class PeminjamanController extends Controller
 
         session()->flash('success', 'Request berhasil Ditambahkan!');
         return redirect()->route('detail.index', $peminjaman->id);
+    }
+
+    public function deleteRequestPinjam($id)
+    {
+        $peminjaman = Peminjaman::findOrfail($id);
+
+        $detailPinjam = DetailPinjam::where(['peminjaman_id' => $id])->get();
+        foreach($detailPinjam as $d) {
+            $d->delete();
+        }
+
+        $peminjaman->delete();
+
+        session()->flash('success', 'Request berhasil Dihapus!');
+        return redirect()->back();
     }
     
 }

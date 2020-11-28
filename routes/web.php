@@ -75,13 +75,15 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::prefix('peminjaman')->namespace('Peminjaman')->group(function() {
+        // peminjaman
         Route::get('', 'PeminjamanController@index')->name('peminjaman.index');
-        // Route::get('/request-peminjaman', 'PeminjamanController@create')->name('peminjaman.create');
         Route::get('/create-request-pinjam', 'PeminjamanController@createRequestPinjam')->name('peminjaman.create.req');
         Route::post('/create-request-pinjam', 'PeminjamanController@storeRequestPinjam')->name('peminjaman.store.req');
+        Route::delete('/delete-request-pinjam/{id}', 'PeminjamanController@deleteRequestPinjam')->name('peminjaman.delete');
         // detail
         Route::get('/detail-peminjaman/{id}', 'DetailPinjamController@detailIndex')->name('detail.index');
         Route::get('/create-request-detail/{id}', 'DetailPinjamController@detailCreate')->name('detail.create');
         Route::post('/create-request-detail', 'DetailPinjamController@storeRequestDetail')->name('detail.store');
+        Route::delete('/delete-request-detail/{id}', 'DetailPinjamController@deleteRequestDetail')->name('detail.delete');
     });
 });

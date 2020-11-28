@@ -13,7 +13,7 @@
 	<div class="col-md-6">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('ruang.index') }}"><i class="fas fa-box-open"></i> Peminjaman</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('peminjaman.index') }}"><i class="fas fa-box-open"></i> Peminjaman</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-copy"></i> Detail Peminjaman</li>
 			</ol>
 		</nav>
@@ -90,7 +90,7 @@
                                 <td>{{ $d->inventaris->nama }}</td>
                                 <td>{{ $d->jumlah }}</td>
                                 <td>
-                                    <form action="" method="POST">
+                                    <form action="{{ route('detail.delete', $d->id) }}" method="POST">
                                         @method('delete')
                                         @csrf
                                         <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>

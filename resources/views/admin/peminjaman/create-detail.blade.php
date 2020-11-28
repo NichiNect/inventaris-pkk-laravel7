@@ -14,8 +14,9 @@
 	<div class="col-md-6">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('ruang.index') }}"><i class="fas fa-box-open"></i> Peminjaman</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-copy"></i> Detail Peminjaman</li>
+                <li class="breadcrumb-item"><a href="{{ route('peminjaman.index') }}"><i class="fas fa-box-open"></i> Peminjaman</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('detail.index', $peminjaman->id) }}"><i class="fas fa-copy"></i> Data Detail Pinjam</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-plus"></i> Tambah Detail Pinjam</li>
 			</ol>
 		</nav>
 	</div>

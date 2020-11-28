@@ -13,7 +13,7 @@
 	<div class="col-md-6">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('ruang.index') }}"><i class="fas fa-box-open"></i> Peminjaman</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('peminjaman.index') }}"><i class="fas fa-box-open"></i> Peminjaman</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-copy"></i> Data Peminjaman</li>
 			</ol>
 		</nav>
@@ -48,14 +48,14 @@
 </div>
 
 <div class="row my-3">
-    <div class="col-lg-10">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <table class="table table-hover table-responsive">
                     <thead>
                         <th scope="col">#</th>
                         <th scope="col">Nama Peminjam</th>
-                        {{-- <th scope="col">Nama Barang</th> --}}
+                        <th scope="col">Status Peminjaman</th>
                         <th scope="col">Jumlah Item</th>
                         <th scope="col">Tanggal Pinjam</th>
                         <th scope="col">Tanggal Kembali</th>
@@ -69,12 +69,21 @@
                         <tr>
                             <th scope="row">{{ $i++ }}</th>
                             <td>{{ $p->pegawai->nama_pegawai }}</td>
+                            <td>
+                                @if ($p->status_peminjaman == 0)
+                                    {{ "Belum di ACC" }}
+                                @elseif($p->status_peminjaman == 1)
+                                    {{ "Peminjaman telah di ACC" }}
+                                @elseif($p->status_peminjaman == 2)
+                                    {{ "Telah Dikembalikan" }}
+                                @endif
+                            </td>
                             <td>{{ count($p->detail_pinjam). " Item" }}</td>
                             <td>{{ $p->tanggal_pinjam }}</td>
                             <td>@if($p->tanggal_kembali == null) Belum Dikembalikan @else {{ $row->tanggal_kembali }} @endif </td>
                             <td>
                                 <a href="{{ route('detail.index', $p->id) }}" id="showDetail" class="btn btn-success"><i class="fas fa-search"></i> Detail</a>
-                                <form action="" method="post" class="d-inline">
+                                <form action="{{ route('peminjaman.delete', $p->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger text-white" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');">

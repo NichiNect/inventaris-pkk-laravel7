@@ -67,7 +67,16 @@ class DetailPinjamController extends Controller
             abort(404);
         }
         
-        session()->flash('success', "Detail peminjaman berhasil ditambahkan!");
+        session()->flash('success', "Detail peminjaman berhasil Ditambahkan!");
         return redirect()->route('detail.index', $detailPinjam->peminjaman_id);
+    }
+    
+    public function deleteRequestDetail($id)
+    {
+        $detailPinjam = DetailPinjam::findOrFail($id);
+        $detailPinjam->delete();
+
+        session()->flash('success', "Detail peminjaman berhasil Dihapus!");
+        return redirect()->back();
     }
 }
