@@ -101,14 +101,18 @@ Route::middleware('auth')->group(function() {
 
     Route::prefix('laporan')->group(function() {
         Route::get('', 'LaporanController@index')->name('laporan.index');
-        // pdf peminjaman
+        // laporan peminjaman
         Route::get('/export-peminjaman-pdf', 'LaporanController@exportPeminjamanPDF')->name('laporan.peminjaman.pdf');
-        // pdf inventaris
+        Route::get('/export-peminjaman-excel', 'LaporanController@exportPeminjamanExcel')->name('laporan.peminjaman.excel');
+        // laporan inventaris
         Route::get('/export-inventaris-pdf', 'LaporanController@exportInventarisPDF')->name('laporan.inventaris.pdf');
-        // pdf jenis
+        Route::get('/export-inventaris-excel', 'LaporanController@exportInventarisExcel')->name('laporan.inventaris.excel');
+        // laporan jenis
         Route::get('/export-jenis-pdf', 'LaporanController@exportJenisPDF')->name('laporan.jenis.pdf');
-        // pdf ruang
+        Route::get('/export-jenis-excel', 'LaporanController@exportJenisExcel')->name('laporan.jenis.excel');
+        // laporan ruang
         Route::get('/export-ruang-pdf', 'LaporanController@exportRuangPDF')->name('laporan.ruang.pdf');
+        Route::get('/export-ruang-excel', 'LaporanController@exportRuangExcel')->name('laporan.ruang.excel');
     });
     Route::get('anu-laporan', function() {
         $ruang = \App\Models\Ruang::orderBy('created_at','DESC')->get();

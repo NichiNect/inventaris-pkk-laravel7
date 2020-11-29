@@ -25,7 +25,8 @@
                 <th>Tanggal Register</th>
                 <th>Kode Inventaris</th>
                 <th>Jenis</th>
-                <th>Kode Ruang</th>
+                <th>Ruang</th>
+                <th>Penanggung Jawab</th>
             </tr>
         </thead>
         <tbody>
@@ -43,6 +44,7 @@
             <td>{{ $data->kode_inventaris }}</td>
             <td>{{ $data->jenis->nama_jenis }}</td>
             <td>{{ $data->ruang->nama_ruang }}</td>
+            <td>{{ $data->petugas->nama_petugas }}</td>
         </tr>
         @empty
         <tr>

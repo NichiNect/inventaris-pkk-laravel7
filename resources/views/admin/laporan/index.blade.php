@@ -26,7 +26,7 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="export_peminjaman">
               <a class="dropdown-item" href="{{ route('laporan.peminjaman.pdf') }}">Export PDF</a>
-              <a class="dropdown-item" href="#">Export Excel</a>
+              <a class="dropdown-item" href="{{ route('laporan.peminjaman.excel') }}">Export Excel</a>
             </div>
         </div>
         <div class="dropdown mx-1">
@@ -35,7 +35,7 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="export_inventaris">
               <a class="dropdown-item" href="{{ route('laporan.inventaris.pdf') }}">Export PDF</a>
-              <a class="dropdown-item" href="#">Export Excel</a>
+              <a class="dropdown-item" href="{{ route('laporan.inventaris.excel') }}">Export Excel</a>
             </div>
         </div>
         <div class="dropdown mx-1">
@@ -44,7 +44,7 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="export_jenis">
               <a class="dropdown-item" href="{{ route('laporan.jenis.pdf') }}">Export PDF</a>
-              <a class="dropdown-item" href="#">Export Excel</a>
+              <a class="dropdown-item" href="{{ route('laporan.jenis.excel') }}">Export Excel</a>
             </div>
         </div>
         <div class="dropdown mx-1">
@@ -53,7 +53,7 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="export_ruang">
               <a class="dropdown-item" href="{{ route('laporan.ruang.pdf') }}">Export PDF</a>
-              <a class="dropdown-item" href="#">Export Excel</a>
+              <a class="dropdown-item" href="{{ route('laporan.ruang.excel') }}">Export Excel</a>
             </div>
         </div>
         </div>
