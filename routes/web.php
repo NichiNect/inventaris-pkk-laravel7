@@ -98,4 +98,21 @@ Route::middleware('auth')->group(function() {
         Route::post('/create-request-detail', 'DetailPinjamController@storeRequestDetail')->name('detail.store');
         Route::delete('/delete-request-detail/{id}', 'DetailPinjamController@deleteRequestDetail')->name('detail.delete');
     });
+
+    Route::prefix('laporan')->group(function() {
+        Route::get('', 'LaporanController@index')->name('laporan.index');
+        // pdf peminjaman
+        Route::get('/export-peminjaman-pdf', 'LaporanController@exportPeminjamanPDF')->name('laporan.peminjaman.pdf');
+        // pdf inventaris
+        Route::get('/export-inventaris-pdf', 'LaporanController@exportInventarisPDF')->name('laporan.inventaris.pdf');
+        // pdf jenis
+        Route::get('/export-jenis-pdf', 'LaporanController@exportJenisPDF')->name('laporan.jenis.pdf');
+        // pdf ruang
+        Route::get('/export-ruang-pdf', 'LaporanController@exportRuangPDF')->name('laporan.ruang.pdf');
+    });
+    Route::get('anu-laporan', function() {
+        $ruang = \App\Models\Ruang::orderBy('created_at','DESC')->get();
+        return view('admin.laporan.export-ruang-pdf', compact('ruang'));
+    });
 });
+
