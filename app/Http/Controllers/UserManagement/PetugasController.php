@@ -23,11 +23,10 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        // $this->authorize('isAdmin', 'isOperator');
         if(request()->user()->can('isPegawai')) {
             abort('403', 'Akun Anda tidak memiliki Akses');
         }
-        $petugas = Petugas::paginate(10);
+        $petugas = Petugas::orderBy('created_at', 'DESC')->paginate(10);
         return view('admin.user-management.petugas.index', compact('petugas'));
     }
 

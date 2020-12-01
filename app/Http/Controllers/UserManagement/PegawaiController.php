@@ -15,7 +15,7 @@ class PegawaiController extends Controller
         "max" => ":attribute tidak boleh lebih dari :max.",
         "same" => ":attribute dan :other harus sama"
     ];
-
+    
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +23,7 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $pegawai = Pegawai::paginate(10);
+        $pegawai = Pegawai::orderBy('created_at', 'DESC')->paginate(10);
         return view('admin.user-management.pegawai.index', compact('pegawai'));
     }
 
@@ -34,6 +34,9 @@ class PegawaiController extends Controller
      */
     public function create()
     {
+        if(request()->user()->can('isPegawai')) {
+            abort('403', 'Akun Anda tidak memiliki Akses');
+        }
         return view('admin.user-management.pegawai.form-create');
     }
 
@@ -45,6 +48,9 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
+        if(request()->user()->can('isPegawai')) {
+            abort('403', 'Akun Anda tidak memiliki Akses');
+        }
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'username' => ['required', 'alpha_num', 'string', 'min:3', 'max:50'],
@@ -96,6 +102,9 @@ class PegawaiController extends Controller
      */
     public function edit($id)
     {
+        if(request()->user()->can('isPegawai')) {
+            abort('403', 'Akun Anda tidak memiliki Akses');
+        }
         $pegawai = Pegawai::findOrFail($id);
         return view('admin.user-management.pegawai.form-edit', compact('pegawai'));
     }
@@ -109,6 +118,9 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(request()->user()->can('isPegawai')) {
+            abort('403', 'Akun Anda tidak memiliki Akses');
+        }
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'username' => ['required', 'alpha_num', 'string', 'min:3', 'max:50'],
@@ -148,6 +160,9 @@ class PegawaiController extends Controller
      */
     public function destroy($id)
     {
+        if(request()->user()->can('isPegawai')) {
+            abort('403', 'Akun Anda tidak memiliki Akses');
+        }
         $pegawai = Pegawai::findOrFail($id);
 
         if($pegawai) {
