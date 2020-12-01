@@ -24,6 +24,9 @@ class PetugasController extends Controller
     public function index()
     {
         // $this->authorize('isAdmin', 'isOperator');
+        if(request()->user()->can('isPegawai')) {
+            abort('403', 'Akun Anda tidak memiliki Akses');
+        }
         $petugas = Petugas::paginate(10);
         return view('admin.user-management.petugas.index', compact('petugas'));
     }
@@ -35,6 +38,7 @@ class PetugasController extends Controller
      */
     public function create()
     {
+        $this->authorize('isAdmin');
         return view('admin.user-management.petugas.form-create');
     }
 
@@ -46,6 +50,7 @@ class PetugasController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('isAdmin');
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'username' => ['required', 'alpha_num', 'string', 'min:3', 'max:50'],
@@ -93,6 +98,7 @@ class PetugasController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('isAdmin');
         $petugas = Petugas::findOrFail($id);
         return view('admin.user-management.petugas.form-edit', compact('petugas'));
     }
@@ -106,6 +112,7 @@ class PetugasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('isAdmin');
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'username' => ['required', 'alpha_num', 'string', 'min:3', 'max:50'],
@@ -142,6 +149,7 @@ class PetugasController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('isAdmin');
         $petugas = Petugas::findOrFail($id);
 
         if($petugas) {
