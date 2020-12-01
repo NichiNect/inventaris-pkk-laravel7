@@ -41,7 +41,8 @@
         </div>
       </div>
     </li>
-  
+    
+    @canany(['isAdmin', 'isOperator'])
     <!-- Divider -->
     <hr class="sidebar-divider">
   
@@ -65,6 +66,7 @@
         <span>Inventaris</span>
       </a>
     </li>
+    @endcanany
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -76,19 +78,21 @@
   
     <!-- Nav Item - Peminjaman -->
     <li class="nav-item">
-      <a class="nav-link pb-0" href="{{ route('peminjaman.index') }}">
+      <a class="nav-link pb-3" href="{{ route('peminjaman.index') }}">
         <i class="fas fa-fw fa-box-open"></i>
         <span>Peminjaman</span>
       </a>
     </li>
     
+    @can('isAdmin')
     <!-- Nav Item - Peminjaman -->
     <li class="nav-item">
-      <a class="nav-link pb-3" href="{{ route('laporan.index') }}">
+      <a class="nav-link pt-0" href="{{ route('laporan.index') }}">
         <i class="fas fa-fw fa-list-alt"></i>
         <span>Laporan</span>
       </a>
     </li>
+    @endcan
 
     <!-- Divider -->
     <hr class="sidebar-divider">

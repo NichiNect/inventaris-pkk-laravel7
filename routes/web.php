@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function() {
         Route::delete('/delete-data-pegawai/{id}', 'PegawaiController@destroy')->name('pegawai.destroy');
     });
 
-    Route::prefix('logistik')->namespace('Inventaris')->group(function() {
+    Route::prefix('logistik')->namespace('Inventaris')->middleware('can:isAdmin')->group(function() {
         // jenis
         Route::get('/jenis-inventaris', 'JenisController@index')->name('jenis.index');
         Route::get('/tambah-jenis-inventaris', 'JenisController@create')->name('jenis.create');
@@ -99,7 +99,7 @@ Route::middleware('auth')->group(function() {
         Route::delete('/delete-request-detail/{id}', 'DetailPinjamController@deleteRequestDetail')->name('detail.delete');
     });
 
-    Route::prefix('laporan')->group(function() {
+    Route::prefix('laporan')->middleware('can:isAdmin')->group(function() {
         Route::get('', 'LaporanController@index')->name('laporan.index');
         // laporan peminjaman
         Route::get('/export-peminjaman-pdf', 'LaporanController@exportPeminjamanPDF')->name('laporan.peminjaman.pdf');
@@ -114,9 +114,6 @@ Route::middleware('auth')->group(function() {
         Route::get('/export-ruang-pdf', 'LaporanController@exportRuangPDF')->name('laporan.ruang.pdf');
         Route::get('/export-ruang-excel', 'LaporanController@exportRuangExcel')->name('laporan.ruang.excel');
     });
-    Route::get('anu-laporan', function() {
-        $ruang = \App\Models\Ruang::orderBy('created_at','DESC')->get();
-        return view('admin.laporan.export-ruang-pdf', compact('ruang'));
-    });
+
 });
 

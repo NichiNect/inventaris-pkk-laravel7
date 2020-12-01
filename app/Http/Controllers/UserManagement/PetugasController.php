@@ -23,6 +23,7 @@ class PetugasController extends Controller
      */
     public function index()
     {
+        // $this->authorize('isAdmin', 'isOperator');
         $petugas = Petugas::paginate(10);
         return view('admin.user-management.petugas.index', compact('petugas'));
     }
