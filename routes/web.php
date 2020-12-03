@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function() {
         Route::delete('/delete-data-pegawai/{id}', 'PegawaiController@destroy')->name('pegawai.destroy');
     });
 
-    Route::prefix('logistik')->namespace('Inventaris')->middleware('can:isAdmin')->group(function() {
+    Route::prefix('logistik')->namespace('Inventaris')->group(function() {
         // jenis
         Route::get('/jenis-inventaris', 'JenisController@index')->name('jenis.index');
         Route::get('/tambah-jenis-inventaris', 'JenisController@create')->name('jenis.create');

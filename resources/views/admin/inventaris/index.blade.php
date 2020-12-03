@@ -31,10 +31,11 @@
 			</button>
 		</div>
         @endif
-        
+        @can('isAdmin')
         <a href="{{ route('invent.create') }}" class="btn btn-outline-primary my-3">
 			<i class="fas fa-plus"></i> Tambah Data Inventaris Baru
 		</a>
+        @endcan
     </div>
 </div>
 
@@ -66,6 +67,7 @@
                             <td>{{ $invent->kode_inventaris }}</td>
                             <td>
                                 <a href="{{ route('invent.show', $invent->id) }}" id="showDetail" class="btn btn-success"><i class="fas fa-search"></i> Detail</a>
+                                @can('isAdmin')
                                 <a href="{{ route('invent.edit', $invent->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
                                 <form action="{{ route('invent.destroy', $invent->id) }}" method="post" class="d-inline">
                                     @csrf
@@ -74,6 +76,7 @@
                                         <i class="fas fa-trash"></i> Hapus
                                     </button>
                                 </form>
+                                @endcan
                             </td>
                         </tr>
                         @empty

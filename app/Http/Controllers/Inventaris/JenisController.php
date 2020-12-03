@@ -36,6 +36,7 @@ class JenisController extends Controller
      */
     public function create()
     {
+        $this->authorize('isAdmin');
         return view('admin.jenis.form-create', [
             'kodeJenis' => rand(1, 9999999999)
         ]);
@@ -49,6 +50,7 @@ class JenisController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('isAdmin');
         $request->validate([
             'nama_jenis' => ['required', 'string'],
             'kode_jenis' => ['required', 'string', 'max:10'],
@@ -85,6 +87,7 @@ class JenisController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('isAdmin');
         $jenis = Jenis::findOrFail($id);
         return view('admin.jenis.form-edit', compact('jenis'));
     }
@@ -98,6 +101,7 @@ class JenisController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('isAdmin');
         $request->validate([
             'nama_jenis' => ['required', 'string'],
             'kode_jenis' => ['required', 'string', 'max:10'],
@@ -121,6 +125,7 @@ class JenisController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('isAdmin');
         $jenis = Jenis::findOrFail($id);
         $jenis->delete();
 

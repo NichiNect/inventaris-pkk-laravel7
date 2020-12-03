@@ -26,6 +26,7 @@ class InventarisController extends Controller
      */
     public function create()
     {
+        $this->authorize('isAdmin');
         $jenis = Jenis::get();
         $ruang = Ruang::get();
         return view('admin.inventaris.form-create', [
@@ -42,6 +43,7 @@ class InventarisController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('isAdmin');
         $request->validate([
             'nama_barang' => ['required'],
             'kondisi' => ['required'],
@@ -81,7 +83,6 @@ class InventarisController extends Controller
     public function show($id)
     {
         $inventaris = Inventaris::findOrFail($id);
-
         return view('admin.inventaris.detail', compact('inventaris'));
     }
 
@@ -93,6 +94,7 @@ class InventarisController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('isAdmin');
         $inventaris = Inventaris::findOrFail($id);
         $jenis = Jenis::get();
         $ruang = Ruang::get();
@@ -113,6 +115,7 @@ class InventarisController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('isAdmin');
         $request->validate([
             'nama_barang' => ['required'],
             'kondisi' => ['required'],
@@ -149,6 +152,7 @@ class InventarisController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('isAdmin');
         $inventaris = Inventaris::findOrFail($id);
         $inventaris->delete();
 

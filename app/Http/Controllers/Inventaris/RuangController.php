@@ -26,6 +26,7 @@ class RuangController extends Controller
      */
     public function create()
     {
+        $this->authorize('isAdmin');
         return view('admin.ruang.form-create', [
             'kodeRuang' => rand(1, 9999999999)
         ]);
@@ -39,6 +40,7 @@ class RuangController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('isAdmin');
         $request->validate([
             'nama_ruang' => ['required', 'string'],
             'kode_ruang' => ['required', 'string', 'max:10'],
@@ -75,6 +77,7 @@ class RuangController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('isAdmin');
         $ruang = Ruang::findOrFail($id);
         return view('admin.ruang.form-edit', compact('ruang'));
     }
@@ -88,6 +91,7 @@ class RuangController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('isAdmin');
         $request->validate([
             'nama_ruang' => ['required', 'string'],
             'kode_ruang' => ['required', 'string', 'max:10'],
@@ -112,6 +116,7 @@ class RuangController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('isAdmin');
         $ruang = Ruang::findOrFail($id);
         $ruang->delete();
 

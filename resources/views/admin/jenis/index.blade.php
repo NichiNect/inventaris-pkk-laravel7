@@ -31,10 +31,11 @@
 			</button>
 		</div>
         @endif
-        
+        @can('isAdmin')
         <a href="{{ route('jenis.create') }}" class="btn btn-outline-primary my-3">
 			<i class="fas fa-file-medical"></i> Tambah Data Jenis Baru
-		</a>
+        </a>
+        @endcan
     </div>
 </div>
 
@@ -64,6 +65,7 @@
                             <td>{{ $j->created_at->diffForHumans() . ', ' . $j->created_at }}</td>
                             <td>
                                 <a href="{{ route('jenis.show', $j->id) }}" id="showDetail" class="btn btn-success" data-toggle="modal" data-target="#modal"><i class="fas fa-search"></i> Detail</a>
+                                @can('isAdmin')
                                 <a href="{{ route('jenis.edit', $j->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
                                 <form action="{{ route('jenis.destroy', $j->id) }}" method="post" class="d-inline">
                                     @csrf
@@ -72,6 +74,7 @@
                                         <i class="fas fa-trash"></i> Hapus
                                     </button>
                                 </form>
+                                @endcan
                             </td>
                         </tr>
                         @empty

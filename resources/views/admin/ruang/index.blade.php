@@ -31,10 +31,11 @@
 			</button>
 		</div>
         @endif
-        
+        @can('isAdmin')
         <a href="{{ route('ruang.create') }}" class="btn btn-outline-primary my-3">
 			<i class="fas fa-building"></i><i class="fas fa-file-medical"></i> Tambah Data Ruangan
 		</a>
+        @endcan
     </div>
 </div>
 
@@ -64,6 +65,7 @@
                             <td>{{ $r->created_at->diffForHumans() . ', ' . $r->created_at }}</td>
                             <td>
                                 <a href="{{ route('ruang.show', $r->id) }}" id="showDetail" class="btn btn-success" data-toggle="modal" data-target="#modal"><i class="fas fa-search"></i> Detail</a>
+                                @can('isAdmin')
                                 <a href="{{ route('ruang.edit', $r->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
                                 <form action="{{ route('ruang.destroy', $r->id) }}" method="post" class="d-inline">
                                     @csrf
@@ -72,6 +74,7 @@
                                         <i class="fas fa-trash"></i> Hapus
                                     </button>
                                 </form>
+                                @endcan
                             </td>
                         </tr>
                         @empty
