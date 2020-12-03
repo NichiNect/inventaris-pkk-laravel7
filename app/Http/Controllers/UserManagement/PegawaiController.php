@@ -23,6 +23,9 @@ class PegawaiController extends Controller
      */
     public function index()
     {
+        if(request()->user()->can('isPegawai')) {
+            abort('403', 'Akun Anda tidak memiliki Akses');
+        }
         $pegawai = Pegawai::orderBy('created_at', 'DESC')->paginate(10);
         return view('admin.user-management.pegawai.index', compact('pegawai'));
     }

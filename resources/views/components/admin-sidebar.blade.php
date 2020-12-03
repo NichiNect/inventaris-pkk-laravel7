@@ -19,9 +19,10 @@
       </a>
     </li>
   
+    @canany(['isAdmin', 'isOperator'])
     <!-- Divider -->
     <hr class="sidebar-divider">
-  
+    
     <!-- Heading -->
     <div class="sidebar-heading">
       Users
@@ -41,8 +42,9 @@
         </div>
       </div>
     </li>
+    @endcanany
     
-    @canany(['isAdmin', 'isOperator'])
+    {{-- @canany(['isAdmin', 'isOperator']) --}}
     <!-- Divider -->
     <hr class="sidebar-divider">
   
@@ -66,7 +68,7 @@
         <span>Inventaris</span>
       </a>
     </li>
-    @endcanany
+    {{-- @endcanany --}}
 
     <!-- Divider -->
     <hr class="sidebar-divider">
