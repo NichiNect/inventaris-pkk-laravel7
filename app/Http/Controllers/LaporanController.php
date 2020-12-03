@@ -12,6 +12,7 @@ class LaporanController extends Controller
 {
     public function index()
     {
+        $this->authorize('isAdmin');
         return view('admin.laporan.index');
     }
 
@@ -20,6 +21,7 @@ class LaporanController extends Controller
      */
     public function exportPeminjamanPDF()
     {
+        $this->authorize('isAdmin');
         $peminjaman = Peminjaman::orderBy('created_at','DESC')->get();
         $pdf = PDF::loadView('admin.laporan.export-peminjaman-pdf', compact('peminjaman'));
         return $pdf->download(date('d-m-Y', time()) . '-peminjaman-' . time() . '.pdf');
@@ -30,6 +32,7 @@ class LaporanController extends Controller
      */
     public function exportPeminjamanExcel()
     {
+        $this->authorize('isAdmin');
         return Excel::download(new PeminjamanExport, date('d-m-Y', time()) . '-peminjaman-' . time() . '.xlsx');
     }
 
@@ -38,6 +41,7 @@ class LaporanController extends Controller
      */
     public function exportInventarisPDF()
     {
+        $this->authorize('isAdmin');
         $inventaris = Inventaris::orderBy('created_at','DESC')->get();
         $pdf = PDF::loadView('admin.laporan.export-inventaris-pdf', compact('inventaris'));
         return $pdf->download(date('d-m-Y', time()) . '-inventaris-' . time() . '.pdf');
@@ -48,6 +52,7 @@ class LaporanController extends Controller
      */
     public function exportInventarisExcel()
     {
+        $this->authorize('isAdmin');
         return Excel::download(new InventarisExport, date('d-m-Y', time()) . '-inventaris-' . time() . '.xlsx');
     }
 
@@ -56,6 +61,7 @@ class LaporanController extends Controller
      */
     public function exportJenisPDF()
     {
+        $this->authorize('isAdmin');
         $jenis = Jenis::orderBy('created_at','DESC')->get();
         $pdf = PDF::loadView('admin.laporan.export-jenis-pdf', compact('jenis'));
         return $pdf->download(date('d-m-Y', time()) . '-jenis-' . time() . '.pdf');
@@ -66,6 +72,7 @@ class LaporanController extends Controller
      */
     public function exportJenisExcel()
     {
+        $this->authorize('isAdmin');
         return Excel::download(new JenisExport, date('d-m-Y', time()) . '-jenis-' . time() . '.xlsx');
     }
 
@@ -74,6 +81,7 @@ class LaporanController extends Controller
      */
     public function exportRuangPDF()
     {
+        $this->authorize('isAdmin');
         $ruang = Ruang::orderBy('created_at','DESC')->get();
         $pdf = PDF::loadView('admin.laporan.export-ruang-pdf', compact('ruang'));
         return $pdf->download(date('d-m-Y', time()) . '-ruang-' . time() . '.pdf');
@@ -84,6 +92,7 @@ class LaporanController extends Controller
      */
     public function exportRuangExcel()
     {
+        $this->authorize('isAdmin');
         return Excel::download(new RuangExport, date('d-m-Y', time()) . '-ruang-' . time() . '.xlsx');
     }
 }

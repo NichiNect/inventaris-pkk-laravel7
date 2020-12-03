@@ -135,6 +135,9 @@ class PeminjamanController extends Controller
      */
     public function accRequestPinjam($id)
     {
+        if(request()->user()->can('isPegawai')) {
+            abort('403', 'Akun Anda tidak memiliki Akses');
+        }
         $peminjaman = Peminjaman::findOrFail($id);
         
         foreach($peminjaman->detail_pinjam as $p) {
@@ -198,6 +201,9 @@ class PeminjamanController extends Controller
      */
     public function accRequestKembali($id)
     {
+        if(request()->user()->can('isPegawai')) {
+            abort('403', 'Akun Anda tidak memiliki Akses');
+        }
         $peminjaman = Peminjaman::findOrFail($id);
         
         foreach($peminjaman->detail_pinjam as $p) {
@@ -218,6 +224,4 @@ class PeminjamanController extends Controller
         return redirect()->back();
     }
 
-    
-    
 }

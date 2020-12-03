@@ -75,7 +75,7 @@
   
     <!-- Heading -->
     <div class="sidebar-heading">
-      Peminjaman & Laporan
+      Peminjaman @can('isAdmin') & Laporan @endcan
     </div>
   
     <!-- Nav Item - Peminjaman -->
