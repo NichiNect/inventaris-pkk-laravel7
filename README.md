@@ -1,40 +1,78 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<h1 align="center">Halo, selamat datang di Sistem Inventaris SMK</h1>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+<img align="center" src="http://ForTheBadge.com/images/badges/built-with-love.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/makes-people-smile.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/built-by-developers.svg">
 
-## About Laravel
+[![](https://img.shields.io/github/issues/NichiNect/inventaris-pkk-laravel7?style=flat-square)](https://img.shields.io/github/issues/NichiNect/inventaris-pkk-laravel7?style=flat-square) [![](https://img.shields.io/github/stars/NichiNect/inventaris-pkk-laravel7?style=flat-square)](https://img.shields.io/github/stars/NichiNect/inventaris-pkk-laravel7?style=flat-square) ![](https://img.shields.io/github/forks/NichiNect/inventaris-pkk-laravel7?style=flat-square) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![HitCount](http://hits.dwyl.com/NichiNect/https://github.com/NichiNect/inventaris-pkk-laravel7.svg)](http://hits.dwyl.com/NichiNect/https://github.com/NichiNect/inventaris-pkk-laravel7) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![GitHub followers](https://img.shields.io/github/followers/NichiNect.svg?style=flat-square&label=Follow&maxAge=2592000)](https://github.com/NichiNect?tab=followers)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Tentang Repo Ini?
+Repositori ini adalah Web App pengelolaan inventaris sarana prasarana di smk dengan Laravel 7. Awalnya project ini dibuat oleh <a href="https://github.com/NichiNect"> Yoni Widhi C </a> sebagai tugas Produk Kreatif dan Kewirausahaan pada semester 5, serta sebagai uji coba latihan. **Sistem Inventaris SMK ini adalah web app untuk me-manajemen atau mengatur Inventaris Peminjaman pada ruang maupun kelas.**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Fitur Apa Saja Yang Tersedia di Web App Ini?
+- Autentikasi Admin, Petugas, dan Pegawai 
+- Terdapat 3 User Level
+- User Management
+- Barang Inventaris & CRUD
+- Jenis Barang Inventaris & CRUD
+- Data Ruang & CRUD
+- Peminjaman Barang Sesuai Dengan Ruang
+- Cetak Laporan (sesuai role)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+------------
 
-## Learning Laravel
+## 💻 Install
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Clone Repository**
+```bash
+git clone https://github.com/NichiNect/inventaris-pkk-laravel7.git inventaris-app
+cd inventaris-app
+composer install
+npm install && npm run dev
+copy .env.example .env
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Buka ```.env``` lalu ubah baris berikut sesuai dengan konfigurasi database**
+```
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## Code of Conduct
+3. **Instalasi website**
+```bash
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+```
+Saya menyediakan data dummy simple untuk database nya jika terjadi error pada migration atau seeding. silahkan import file ```laravel_project_inventaris.sql``` pada database Anda.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. **Run the website**
+```bash
+php artisan serve
+```
 
-## Security Vulnerabilities
+------------
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 👤 Default Account for testing
+	
+**Admin Default Account**
+- Username: yoniwidhi
+- Password: thispassword
 
-## License
+**Petugas Default Account**
+- Username : petugas1
+- Password : thispassword
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+------------
+
+## 🧑 Author
+
+👤 <a href="https://www.facebook.com/yoniwidhi"> **Yoni Widhi**</a>
+- Facebook : <a href="https://www.facebook.com/yoniwidhi"> Yoni Widhi</a>
+- Telegram : <a href="https://t.me/yoniwidhi"> Yoni Widhi</a>
+
+------------
+
+## 🤝 Contributing
+Contributions, issues and feature requests di persilahkan.
+Jangan ragu untuk memeriksa halaman masalah jika Anda ingin berkontribusi. **Berhubung Project ini saya yang mengerjakannya sendiri, namun banyak fitur yang kalian dapat tambahkan silahkan berkontribusi yaa!**
